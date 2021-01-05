@@ -1,0 +1,96 @@
+{
+  "name": "vscode-lua-test-adapter",
+  "displayName": "Lua Test Adapter",
+  "description": "Run your LuaUnit tests in the Sidebar of Visual Studio Code",
+  "icon": "img/icon.png",
+  "author": "Linus Sunde <linus.sunde@gmail.com>",
+  "publisher": "lej",
+  "version": "1.0.0",
+  "license": "MIT",
+  "homepage": "https://github.com/Lej/vscode-lua-test-adapter",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Lej/vscode-lua-test-adapter.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Lej/vscode-lua-test-adapter/issues"
+  },
+  "categories": [
+    "Other"
+  ],
+  "keywords": [
+    "test",
+    "testing"
+  ],
+  "main": "out/main.js",
+  "scripts": {
+    "clean": "rimraf out *.vsix",
+    "build": "tsc",
+    "watch": "tsc -w",
+    "rebuild": "npm run clean && npm run build",
+    "package": "vsce package",
+    "publish": "vsce publish"
+  },
+  "dependencies": {
+    "tslib": "^1.9.3",
+    "vscode-test-adapter-api": "^1.7.0",
+    "vscode-test-adapter-util": "^0.7.0"
+  },
+  "devDependencies": {
+    "@types/vscode": "~1.23.0",
+    "typescript": "^3.5.3",
+    "vsce": "^1.65.0"
+  },
+  "engines": {
+    "vscode": "^1.23.0"
+  },
+  "extensionDependencies": [
+    "hbenl.vscode-test-explorer"
+  ],
+  "activationEvents": [
+    "*"
+  ],
+  "contributes": {
+    "configuration": {
+      "type": "object",
+      "title": "Lua Test Adapter",
+      "properties": {
+        "luaTestAdapter.luaExe": {
+          "description": "Path to Lua executable. Defaults to 'lua'",
+          "type": "string",
+          "scope": "resource"
+        },
+        "luaTestAdapter.testGlob": {
+          "description": "Glob used to find test files. Defaults to '**/[tT]est*.{lua}",
+          "type": "string",
+          "scope": "resource"
+        },
+        "luaTestAdapter.testRegex": {
+          "description": "Regex used to find tests. Defaults to /^\\s*function\\s+(?:[a-zA-Z][a-zA-Z0-9]*:)?(?<test>[a-zA-Z][a-zA-Z0-9]*)\\(\\)(?:.*)$/",
+          "type": "string",
+          "scope": "resource"
+        },
+        "luaTestAdapter.testEncoding": {
+          "description": "Regex used to find tests. Defaults to 'utf8'",
+          "type": "string",
+          "scope": "resource"
+        },
+        "luaTestAdapter.decorationRegex": {
+          "description": "Regex used to find line and reason. Defaults to /\\.lua:(?<line>[1-9][0-9]*):(?<message>.*)stack traceback:/",
+          "type": "string",
+          "scope": "resource"
+        },
+        "luaTestAdapter.logpanel": {
+          "description": "Write diagnotic logs to an output panel",
+          "type": "boolean",
+          "scope": "resource"
+        },
+        "luaTestAdapter.logfile": {
+          "description": "Write diagnostic logs to the given file",
+          "type": "string",
+          "scope": "resource"
+        }
+      }
+    }
+  }
+}
