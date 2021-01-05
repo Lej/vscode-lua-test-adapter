@@ -5,7 +5,7 @@
   "icon": "img/icon.png",
   "author": "Linus Sunde <linus.sunde@gmail.com>",
   "publisher": "lej",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "license": "MIT",
   "homepage": "https://github.com/Lej/vscode-lua-test-adapter",
   "repository": {
@@ -64,7 +64,7 @@
           "scope": "resource"
         },
         "luaTestAdapter.testGlob": {
-          "description": "Glob used to find test files. Defaults to '**/[tT]est*.{lua}",
+          "description": "Glob used to find test files. Defaults to '**/[tT]est*.{lua}'",
           "type": "string",
           "scope": "resource"
         },
@@ -74,12 +74,12 @@
           "scope": "resource"
         },
         "luaTestAdapter.testEncoding": {
-          "description": "Regex used to find tests. Defaults to 'utf8'",
+          "description": "Test file encoding. Defaults to 'utf8'",
           "type": "string",
           "scope": "resource"
         },
         "luaTestAdapter.decorationRegex": {
-          "description": "Regex used to find line and reason. Defaults to /\\.lua:(?<line>[1-9][0-9]*):(?<message>.*)stack traceback:/",
+          "description": "Regex used to find line number and failure message. Defaults to /\\.lua:(?<line>[1-9][0-9]*):(?<message>.*)stack traceback:/",
           "type": "string",
           "scope": "resource"
         },
