@@ -5,7 +5,7 @@
   "icon": "img/icon.png",
   "author": "Linus Sunde <linus.sunde@gmail.com>",
   "publisher": "lej",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "license": "MIT",
   "homepage": "https://github.com/Lej/vscode-lua-test-adapter",
   "repository": {
@@ -20,7 +20,9 @@
   ],
   "keywords": [
     "test",
-    "testing"
+    "testing",
+    "lua",
+    "adapter"
   ],
   "main": "out/main.js",
   "scripts": {
@@ -45,7 +47,8 @@
     "vscode": "^1.23.0"
   },
   "extensionDependencies": [
-    "hbenl.vscode-test-explorer"
+    "hbenl.vscode-test-explorer",
+    "actboy168.lua-debug"
   ],
   "activationEvents": [
     "*"

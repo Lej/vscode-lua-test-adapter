@@ -1,7 +1,8 @@
 import * as vscode from "vscode";
-import { TestAdapter, TestLoadStartedEvent, TestLoadFinishedEvent, TestRunStartedEvent, TestRunFinishedEvent, TestSuiteEvent, TestEvent } from "vscode-test-adapter-api";
+import { TestAdapter, TestLoadStartedEvent, TestLoadFinishedEvent, TestRunStartedEvent, TestRunFinishedEvent, TestSuiteEvent, TestEvent, TestSuiteInfo } from "vscode-test-adapter-api";
 import { Log } from "vscode-test-adapter-util";
-import { loadTests, runTests } from "./tests";
+import * as settings from "./settings";
+import { loadTests, runTests, findNode } from "./tests";
 
 export class LuaTestAdapter implements TestAdapter {
 
@@ -14,6 +15,8 @@ export class LuaTestAdapter implements TestAdapter {
 	get tests(): vscode.Event<TestLoadStartedEvent | TestLoadFinishedEvent> { return this.testsEmitter.event; }
 	get testStates(): vscode.Event<TestRunStartedEvent | TestRunFinishedEvent | TestSuiteEvent | TestEvent> { return this.testStatesEmitter.event; }
 	get autorun(): vscode.Event<void> | undefined { return this.autorunEmitter.event; }
+
+	private suite: TestSuiteInfo | undefined;
 
 	constructor(
 		public readonly workspace: vscode.WorkspaceFolder,
@@ -28,8 +31,8 @@ export class LuaTestAdapter implements TestAdapter {
 	async load(): Promise<void> {
 		this.log.info("Loading LuaUnit tests");
 		this.testsEmitter.fire(<TestLoadStartedEvent>{ type: "started" });
-		const loadedTests = await loadTests();
-		this.testsEmitter.fire(<TestLoadFinishedEvent>{ type: "finished", suite: loadedTests });
+		this.suite = await loadTests();
+		this.testsEmitter.fire(<TestLoadFinishedEvent>{ type: "finished", suite: this.suite });
 	}
 
 	async run(tests: string[]): Promise<void> {
@@ -39,11 +42,46 @@ export class LuaTestAdapter implements TestAdapter {
 		this.testStatesEmitter.fire(<TestRunFinishedEvent>{ type: "finished" });
 	}
 
-/*	implement this method if your TestAdapter supports debugging tests
 	async debug(tests: string[]): Promise<void> {
-		// start a test run in a child process and attach the debugger to it...
+		if (!this.suite) {
+			this.log.error("No tests loaded", tests);
+			return;
+		}
+
+		const node = findNode(this.suite, tests[0]);
+		if (!node) {
+			this.log.error("Test not found", tests[0]);
+			return;
+		}
+
+		if (!node.file) {
+			this.log.error("Test does not specify test file", node);
+			return;
+		}
+
+		const file = vscode.Uri.file(node.file);
+		const workspaceFolder = vscode.workspace.getWorkspaceFolder(file);
+
+		if (!workspaceFolder) {
+			this.log.error("Failed to find test file workspaceFolder", node.file);
+			return;
+		}
+
+		const luaExe = settings.getLuaExe();
+		return new Promise<void>(() => {
+			vscode.debug.startDebugging(workspaceFolder, {
+				"type": "lua",
+				"request": "launch",
+				"name": "Launch",
+				"luaexe": luaExe,
+				"cwd": workspaceFolder.uri.fsPath,
+				"program": file.fsPath,
+				"arg": [node.label],
+				"console": "internalConsole",
+				"stopOnEntry": false
+			});
+		});
 	}
-*/
 
 	cancel(): void {
 		// in a "real" TestAdapter this would kill the child process for the current test run (if there is any)

@@ -95,7 +95,7 @@ export async function runTests(
 	}
 }
 
-function findNode(searchNode: TestSuiteInfo | TestInfo, id: string): TestSuiteInfo | TestInfo | undefined {
+export function findNode(searchNode: TestSuiteInfo | TestInfo, id: string): TestSuiteInfo | TestInfo | undefined {
 	if (searchNode.id === id) {
 		return searchNode;
 	} else if (searchNode.type === "suite") {
