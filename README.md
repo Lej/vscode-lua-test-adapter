@@ -3,7 +3,7 @@
 Lua Test Adapter (https://marketplace.visualstudio.com/items?itemName=lej.vscode-lua-test-adapter)
 This is a LuaUnit test adapter for Test Explorer UI (https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer)
 
-## Supported:
+## Supported
 
 * Detect LuaUnit tests
 * Run LuaUnit tests
@@ -11,12 +11,12 @@ This is a LuaUnit test adapter for Test Explorer UI (https://marketplace.visuals
   * Depends on Lua Debug (https://marketplace.visualstudio.com/items?itemName=actboy168.lua-debug)
   * Lua Debug has a known issue with Lua 5.4 (https://github.com/actboy168/lua-debug/issues/103)
 
-## Not supported:
+## Not supported
 
 * Automatic reloading of test definitions
 * Autorun
 
-## Getting Started:
+## Getting Started
 
 1. Create an empty folder `example`
 2. Download LuaUnit (`example/luaunit.lua`)
