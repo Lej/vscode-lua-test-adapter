@@ -1,5 +1,8 @@
 # LuaUnit Test Adapter for Visual Studio Code
 
+Lua Test Adapter (https://marketplace.visualstudio.com/items?itemName=lej.vscode-lua-test-adapter)
+This is a LuaUnit test adapter for Test Explorer UI (https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer)
+
 ## Supported:
 
 * Detect LuaUnit tests
