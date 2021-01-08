@@ -162,7 +162,7 @@ async function runTest(
 	}
 
 	const stdout = String(lua.stdout);
-	const passed = stdout && stdout.length > 0 && stdout[0] === ".";
+	const passed = stdout && stdout.length > 0 && stdout.match(/.*OK\s*$/);
 	const state = passed ? "passed" : "failed";
 
 	const event = <TestEvent>{ type: "test", test: node.id, state: state, message: stdout };

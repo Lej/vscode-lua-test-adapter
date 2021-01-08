@@ -1,18 +1,28 @@
 luaunit  = require('./libs/luaunit')
 
-function testSuccess1()
+function testPassed1()
     luaunit.assertEquals({1, 2, 3}, {1, 2, 3})
 end
 
-function testFailure1()
+function testFailed1()
     luaunit.assertEquals({1, 2, 3}, {1, 2, 4})
 end
 
-function testSuccess2()
+function testPassed2()
     luaunit.assertEquals({1, 2, 3}, {1, 2, 3})
 end
 
-function testFailure2()
+function testFailed2()
+    luaunit.assertEquals({1, 2, 3}, {1, 2, 4})
+end
+
+function testWithOutputPassed()
+    print("Hello World!")
+    luaunit.assertEquals({1, 2, 3}, {1, 2, 3})
+end
+
+function testWithOutputFailed()
+    print("Hello World!")
     luaunit.assertEquals({1, 2, 3}, {1, 2, 4})
 end
 
