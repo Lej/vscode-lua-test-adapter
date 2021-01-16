@@ -60,7 +60,7 @@ export async function loadTests(): Promise<TestSuiteInfo> {
 
 		const content = await readFile(file.fsPath, {
 			encoding: testEncoding
-		});
+		}) as string;
 
 		let match: RegExpExecArray | null;
 		do {

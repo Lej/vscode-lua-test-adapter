@@ -53,6 +53,6 @@ os.exit(luaunit.LuaUnit.run())
 | --- | --- |
 | `luaTestAdapter.luaExe` | Path to Lua executable. Defaults to `lua` |
 | `luaTestAdapter.testGlob` | Glob used to find test files. Defaults to `**/[tT]est*.{lua}` |
-| `luaTestAdapter.testRegex` | Regex used to find tests. Defaults to `/^\s*function\s+(?:[a-zA-Z][a-zA-Z0-9]*:)?(?<test>[a-zA-Z][a-zA-Z0-9]*)\(\)(?:.*)$/` |
+| `luaTestAdapter.testRegex` | Regex used to find tests. Defaults to `/^\s*function\s+(?:[a-zA-Z][a-zA-Z0-9]*:)?(?<test>[tT]est[a-zA-Z0-9]*)\(\)(?:.*)$/` |
 | `luaTestAdapter.testEncoding` | Test file encoding. Defaults to `utf8` |
 | `luaTestAdapter.decorationRegex` | Regex used to find line number and failure message. Defaults to `/\.lua:(?<line>[1-9][0-9]*):(?<message>.*)stack traceback:/` |
