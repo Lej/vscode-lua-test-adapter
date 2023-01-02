@@ -16,6 +16,11 @@ This is a LuaUnit test adapter for Test Explorer UI (https://marketplace.visuals
 * Automatic reloading of test definitions
 * Autorun
 
+## Example
+
+An example similar to the one described below in [Getting Started](#getting-started) can be found here:
+* https://github.com/Lej/vscode-lua-test-adapter-example
+
 ## Getting Started
 
 1. Create an empty folder `example`
@@ -37,7 +42,7 @@ end
 os.exit(luaunit.LuaUnit.run())
 ```
 
-4. If the Lua executable is not available via `lua` create `.vscode/settings.json`
+4. If the Lua executable is not available via `lua` create `.vscode/settings.json`. The current workspace folder can be referred to as `${workspaceFolder}`, e.g. `"${workspaceFolder}/lua5.1.exe"`
 
 ```json
 {
@@ -45,7 +50,16 @@ os.exit(luaunit.LuaUnit.run())
 }
 ```
 
-5. Run (or debug) the tests via the Test Explorer UI
+5. Install Test Explorer UI
+  * https://marketplace.visualstudio.com/items?itemName=hbenl.vscode-test-explorer
+
+6. Install Lua Test Adapter
+  * https://marketplace.visualstudio.com/items?itemName=lej.vscode-lua-test-adapter
+
+7. For debugging capability install Lua Debug
+  * https://marketplace.visualstudio.com/items?itemName=actboy168.lua-debug
+
+8. Run (or debug) the tests via the Test Explorer UI
 
 ## Configuration
 
