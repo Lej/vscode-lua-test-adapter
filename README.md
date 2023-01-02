@@ -65,7 +65,7 @@ os.exit(luaunit.LuaUnit.run())
 
 | Property | Description |
 | --- | --- |
-| `luaTestAdapter.luaExe` | Path to Lua executable. Defaults to `lua` |
+| `luaTestAdapter.luaExe` | Path to Lua executable. The current workspace folder can be referred to using `${workspaceFolder}`. Defaults to `lua` |
 | `luaTestAdapter.testGlob` | Glob used to find test files. Defaults to `**/[tT]est*.{lua}` |
 | `luaTestAdapter.testRegex` | Regex used to find tests. Defaults to `/^\s*function\s+(?:[a-zA-Z][a-zA-Z0-9]*:)?(?<test>[tT]est[a-zA-Z0-9]*)\(\)(?:.*)$/` |
 | `luaTestAdapter.testEncoding` | Test file encoding. Defaults to `utf8` |
