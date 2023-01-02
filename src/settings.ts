@@ -1,11 +1,11 @@
 import * as vscode from "vscode";
 
 function substitutePath(s: string): string {
-  const workspaceFolder = (vscode.workspace.workspaceFolders || [])[0].uri.fsPath;
-
+  const workspaceFolder = (vscode.workspace.workspaceFolders || [])[0]?.uri?.fsPath;
+  if (!workspaceFolder) return s;
   return s
-    .replace(/\${workspaceRoot}/g, workspaceFolder || "")
-    .replace(/\${workspaceFolder}/g, workspaceFolder || "");
+    .replace(/\${workspaceRoot}/g, workspaceFolder)
+    .replace(/\${workspaceFolder}/g, workspaceFolder);
 }
 
 export function getLuaExe(): string {
