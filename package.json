@@ -5,7 +5,7 @@
   "icon": "img/icon.png",
   "author": "Linus Sunde <linus.sunde@gmail.com>",
   "publisher": "lej",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "license": "MIT",
   "homepage": "https://github.com/Lej/vscode-lua-test-adapter",
   "repository": {
@@ -31,7 +31,8 @@
     "watch": "tsc -w",
     "rebuild": "npm run clean && npm run build",
     "package": "vsce package",
-    "publish": "vsce publish"
+    "publish": "vsce publish",
+    "login": "vsce login lej"
   },
   "dependencies": {
     "tslib": "~2.1.0",
