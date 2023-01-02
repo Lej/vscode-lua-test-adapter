@@ -1,7 +1,15 @@
 import * as vscode from "vscode";
 
+function substitutePath(s: string): string {
+  const workspaceFolder = (vscode.workspace.workspaceFolders || [])[0].uri.fsPath;
+
+  return s
+    .replace(/\${workspaceRoot}/g, workspaceFolder || "")
+    .replace(/\${workspaceFolder}/g, workspaceFolder || "");
+}
+
 export function getLuaExe(): string {
-  return getOrDefault("luaExe", "lua");
+  return substitutePath(getOrDefault("luaExe", "lua"));
 }
 
 export function getTestGlob(): string {
